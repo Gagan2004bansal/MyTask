@@ -2,10 +2,11 @@ const router = require('express').Router();
 
 const {Signup} = require('../Controllers/Signup');
 const {Login} = require('../Controllers/Login');
+const {Profile} = require('../Controllers/Profile');
 
 router.post('/login', Login);
 router.post('/signup', Signup);
-// router.post('/profile', <div>profile</div>);
+router.post('/profile', Profile);
 // router.get('/home', () => {<div>home</div>})
 // router.post('/note', <div>note</div>)
 // router.post('/bookmarks', <div>bookmarks</div>)
