@@ -1,7 +1,9 @@
 import NavBar from "./NavBar";
 import { UserContext } from "../UserProvider";
 import { useContext } from "react";
+import { ThreeCircles } from 'react-loader-spinner';
 import Heatmap from "../UI/Heatmap";
+import { useNavigate } from "react-router-dom";
 
 // icons 
 import { RiUser2Fill } from "react-icons/ri";
@@ -11,9 +13,23 @@ import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 
 
+
+
 const Profile = () => {
 
+  const navigate = useNavigate();
   const profileData = useContext(UserContext);
+
+  if (!profileData) return (
+    <div>
+      <div>
+        <NavBar />
+      </div>
+      <div className="vh90 flex items-center justify-center">
+        <div><ThreeCircles visible={true} height="100" width="100" color="#4fa94d" ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass="" /></div>
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -34,13 +50,13 @@ const Profile = () => {
                 <p className="mt-4">{profileData.bio}</p>
               </div>
               <div className="flex flex-col gap-y-4 items-center w-full">
-                    <div className="flex items-center justify-center gap-x-2 w-full bg-red-500 hover:bg-red-600 text-white px-10 py-2 rounded-md shadow-lg cursor-pointer">
+                    <div onClick={() => {navigate('/api/v1/edit-profile')}} className="flex items-center justify-center gap-x-2 w-full bg-red-500 hover:bg-red-600 text-white px-10 py-2 rounded-md shadow-lg cursor-pointer">
                       <div><CiEdit/></div>
                       <button>Edit Profile</button>
                     </div>
                   <div className="flex items-center justify-center gap-x-2 w-full bg-red-500 hover:bg-red-600 text-white px-10 py-2 rounded-md shadow-lg cursor-pointer">
                     <div><MdDelete/></div>
-                    <button>Delete Account</button>
+                    <button onClick={() => {alert('Are you sure to delete account')}}>Delete Account</button>
                   </div>
                   <div className="flex items-center justify-center gap-x-2 w-full bg-red-500 hover:bg-red-600 text-white px-10 py-2 rounded-md shadow-lg cursor-pointer">
                     <div><FiLogOut/></div>

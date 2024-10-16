@@ -2,9 +2,21 @@ import { useContext } from 'react';
 import { UserContext } from '../UserProvider';
 import { SiTask } from "react-icons/si";
 import { Link } from 'react-router-dom'
+import { ThreeCircles } from 'react-loader-spinner';
 
 const NavBar = () => {
     const profileData = useContext(UserContext);
+
+    if (!profileData) return (
+        <div>
+          <div>
+            <NavBar />
+          </div>
+          <div className="vh90 flex items-center justify-center">
+            <div><ThreeCircles visible={true} height="100" width="100" color="#4fa94d" ariaLabel="three-circles-loading" wrapperStyle={{}} wrapperClass="" /></div>
+          </div>
+        </div>
+      );
 
     return (
         <div>
